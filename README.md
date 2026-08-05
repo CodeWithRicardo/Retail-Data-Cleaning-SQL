@@ -1,34 +1,24 @@
-# Retail-Data-Cleaning-SQL# Retail Data Cleaning with SQL Server
+# Retail Data Cleaning using SQL Server
 
 ## Overview
 
-This project demonstrates a complete SQL data cleaning workflow using a messy retail sales dataset.
+This project focuses on cleaning a messy retail sales dataset using SQL Server.
 
-The objective is to transform raw data into a clean, structured dataset by applying data validation, standardization, and type conversion using SQL Server.
+The raw dataset contains inconsistent date formats, missing values, invalid numeric values, and inconsistent categorical values. The data is cleaned and loaded from the Bronze layer into the Silver layer.
 
 ---
 
 ## Dataset
 
-- Dataset: Indian Retail Sales Dataset (Raw / Uncleaned)
-- Records: ~4,300
 - Source: Kaggle
+- Records: ~4,300
 - Format: CSV
-
-The raw dataset intentionally contains:
-
-- Missing values
-- Mixed date formats
-- Inconsistent text formatting
-- Invalid numeric values
-- Blank strings
-- Duplicate rows
 
 ---
 
-## Project Workflow
+## Workflow
 
-```text
+```
 CSV
    ↓
 Bronze (Raw Data)
@@ -38,47 +28,16 @@ Silver (Cleaned Data)
 
 ---
 
-## Data Cleaning Performed
+## Cleaning Performed
 
-### Date Cleaning
-
-- Converted multiple date formats into SQL DATE format
-- Handled invalid dates using TRY_CONVERT() and TRY_CAST()
-
-### Missing Values
-
-- Converted blank strings into NULL using NULLIF()
-- Removed records with missing Order IDs
-
-### Data Type Conversion
-
-Converted raw text into appropriate SQL data types:
-
-- DATE
-- INT
-- DECIMAL
-
-### Data Validation
-
-Validated:
-
-- Age (0–100)
-- Quantity (>0)
-- Discount (0–1)
-- Customer Satisfaction (0–5)
-- Shipping Days (>=0)
-
-### Standardization
-
-Standardized:
-
-- Gender values
-- Order Status
-- Return Flag
-
-### Duplicate Handling
-
-Removed fully identical duplicate rows using DISTINCT.
+- Converted mixed date formats to DATE
+- Converted text columns to appropriate data types
+- Removed blank values using `NULLIF()`
+- Standardized gender values
+- Standardized order status values
+- Validated age, quantity, discount, shipping days and customer satisfaction
+- Preserved valid negative profit values
+- Removed identical duplicate rows
 
 ---
 
@@ -87,40 +46,14 @@ Removed fully identical duplicate rows using DISTINCT.
 - CASE
 - TRY_CAST()
 - TRY_CONVERT()
+- CAST()
 - NULLIF()
 - TRIM()
-- COALESCE()
-- CAST()
-- Data Validation
-- Data Type Conversion
+- DISTINCT
 
 ---
 
 ## Files
 
-Retail_Data_Cleaning.sql
+- `Retail_Data_Cleaning.sql` – Complete SQL script for creating Bronze and Silver tables, cleaning the data, and loading the cleaned dataset.
 
-Contains:
-
-- Database creation
-- Bronze table creation
-- Silver table creation
-- Cleaning logic
-- Data validation queries
-
----
-
-## Skills Demonstrated
-
-- SQL Data Cleaning
-- ETL Workflow
-- Data Validation
-- Data Quality Assessment
-- SQL Server
-- Bronze → Silver Architecture
-
----
-
-## Author
-
-Ricardo
